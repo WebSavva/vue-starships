@@ -26,7 +26,7 @@
         <pagination
           :currentPage="currentPage"
           :overallNumberPages="overallNumberPages"
-          :switchPage="switchPage"
+          @switch-page="switchPage"
         ></pagination>
       </div>
     </section>
@@ -165,15 +165,18 @@ export default {
         page: 1,
       });
     },
+    fullResetQuery() {
+      this.$router.push(`/?page=1`);
+    },
     resetSearchMode() {
       this.search = "";
-      this.resetPageNumber();
+      this.fullResetQuery();
     },
     pushNewQuery(newQuery) {
       this.$router.push({
         name: "Home",
         query: {
-          ...this.$route.$query,
+          ...this.$route.query,
           ...newQuery,
         },
       });

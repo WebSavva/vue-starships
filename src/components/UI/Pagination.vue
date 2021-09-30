@@ -4,14 +4,14 @@
       <button
         class="pagination__btn"
         :disabled="currentPage === 1"
-        @click="switchPage(false)"
+        @click="$emit('switch-page',false)"
       >
         Prev
       </button>
       <button
         class="pagination__btn"
         :disabled="currentPage === overallNumberPages"
-        @click="switchPage(true)"
+        @click="$emit('switch-page',true)"
       >
         Next
       </button>
@@ -25,10 +25,10 @@
 <script>
 export default {
   props: {
-    switchPage: Function,
     overallNumberPages: Number,
     currentPage: Number,
   },
+  emits:['switch-page']
 };
 </script>
 
