@@ -1,0 +1,16 @@
+%centered-columns {
+    --main-width:70rem;
+    display: grid;
+    grid-template-columns: 1fr 70rem 1fr;
+    & > * {
+        grid-column: 2 / span 1;
+    }
+    @include media(md) {
+        grid-template-columns: 100%;
+        width: 100%;
+        padding: 1rem;
+        & > * {
+            grid-column: 1/ -1;
+        }
+    }
+}

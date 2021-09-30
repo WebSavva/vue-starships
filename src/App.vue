@@ -1,30 +1,49 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+  <space-background></space-background>
+  <router-view v-slot="{ Component, route }">
+    <transition :name="route.meta.transition" mode="out-in">
+      <component :is="Component" />
+    </transition>
+  </router-view>
 </template>
 
+<script>
+import SpaceBackground from "@/components/UI/SpaceBackground.vue";
+
+export default {
+  components: {
+    SpaceBackground,
+  },
+};
+</script>
 <style lang="scss">
+@import "./styles/index.scss";
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  z-index: 100;
+  overflow-x: hidden;
+  @include centered;
 }
 
-#nav {
-  padding: 30px;
+$duration: 0.2s;
+$timing-function: linear;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+.slide-in-enter-active {
+  animation: slideIn $duration $timing-function;
+}
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.slide-in-leave-active {
+  animation: slideAway $duration $timing-function;
+}
+
+.slide-away-enter-active {
+  animation: slideAway $duration $timing-function reverse;
+}
+
+.slide-away-leave-active {
+  animation: slideIn $duration $timing-function reverse;
 }
 </style>

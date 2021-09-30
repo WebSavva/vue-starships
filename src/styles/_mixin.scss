@@ -1,0 +1,59 @@
+@use "sass:map";
+
+%pseudoDefault {
+  content: "";
+  position: absolute;
+}
+
+@mixin blockCut($angle) {
+  clip-path: polygon(20% 23%, 20% 69%, 0 100%, 0 0);
+  @extend %pseudoDefault;
+  background: black;
+  top: 50%;
+  transform: translateY(-50%) scaleY(1.1) rotate($angle);
+}
+
+@mixin fillElement {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+@mixin cutBorders($width: 1rem, $type: "left", $height: 60%) {
+  $name: before;
+  $offset: left;
+  $angle: 0;
+
+  @if ($type == right) {
+    $name: after;
+    $offset: right;
+    $angle: 180deg;
+  }
+
+  &::#{$name} {
+    @include blockCut($angle);
+    #{$offset}: -0.1rem;
+    width: $width;
+    z-index: 5;
+    height: $height;
+  }
+}
+
+@mixin absCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin media($type) {
+  @media only screen and (max-width:#{map.get($breakpoints, $type)}) {
+    @content;
+  }
+}

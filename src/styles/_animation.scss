@@ -1,0 +1,35 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+$offset: 100px;
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-$offset);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideAway {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX($offset);
+    opacity: 0;
+  }
+}

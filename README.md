@@ -1,24 +1,8 @@
-# vue-starships
+# VUE STARSHIPS
+> Quite simple SPA built with Vue.j, Vue Router and VueX. It is based upon SWAPI and tapes into all starships data.
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Features
+* Requests results caching enabled by axios-extensions
+* Debounced data fetching as the user enters search parameters.
+* Responsive design
+* Pagination
